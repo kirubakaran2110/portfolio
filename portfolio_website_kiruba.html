@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #2a2a72;
+            --secondary: #009ffd;
+            --accent: #00d4ff;
+            --light:white;
+            --dark: #212529;
+            --transition: all 0.3s ease-in-out;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: black;
+            color: antiquewhite;
+            overflow-x: hidden;
+            
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        img {
+            max-width: 100%;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            font-size: 2.5rem;
+        }
+        
+        .section-title span {
+            color: var(--secondary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Header */
+        header {
+            height: 80px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        header.sticky {
+            height: 60px;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-menu {
+            display: flex;
+        }
+        
+        .nav-item {
+            margin-left: 2rem;
+        }
+        
+        .nav-link {
+            font-size: 1.1rem;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--dark);
+            transition: var(--transition);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            animation: fadeInUp 1s ease 0.5s forwards;
+            opacity: 0;
+        }
+        
+        .hero-btn {
+            animation: fadeInUp 1s ease 1s forwards;
+            opacity: 0;
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: -100px;
+            bottom: -50px;
+            width: 600px;
+            height: 600px;
+            background: url('/api/placeholder/600/600') center/cover no-repeat;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .hero-shape {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .shape-1 {
+            top: -150px;
+            left: -150px;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .shape-2 {
+            bottom: -100px;
+            left: 10%;
+            width: 200px;
+            height: 200px;
+            animation: float 10s ease-in-out infinite;
+        }
+        
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+            transform: rotate(-3deg);
+            transition: var(--transition);
+        }
+        
+        .about-image:hover {
+            transform: rotate(0) scale(1.03);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .skill {
+            padding: 0.5rem 1rem;
+            background-color: var(--light);
+            border-radius: 30px;
+            font-weight: 500;
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .skill:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Services Section */
+        .services {
+            background-color:black;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            height: 80px;
+            width: 80px;
+            margin: 2rem auto;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .service-content {
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .service-content h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        .socialmedia-section{
+            align-items: center;
+        }
+        
+        /* Portfolio Section */
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background-color: var(--light);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .portfolio-item {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            height: 300px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .portfolio-hover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 2rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .portfolio-item:hover .portfolio-hover {
+            opacity: 1;
+        }
+        
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-hover h3 {
+            color: white;
+            margin-bottom: 1rem;
+            transform: translateY(-20px);
+            transition: var(--transition);
+        }
+        
+        .portfolio-hover p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+        
+        .portfolio-item:hover .portfolio-hover h3,
+        .portfolio-item:hover .portfolio-hover p {
+            transform: translateY(0);
+        }
+        
+        .portfolio-btn {
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transform: scale(0);
+            transition: var(--transition);
+        }
+        
+        .portfolio-item:hover .portfolio-btn {
+            transform: scale(1);
+        }
+        
+        
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ccc;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .nav-dot.active {
+            background-color: var(--secondary);
+            transform: scale(1.2);
+        }
+        
+        /* Contact Section */
+        .connect-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+        }
+        
+        .connect-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .connect-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .connect-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+        
+        .connect-text h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .connect-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 159, 253, 0.1);
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo span {
+            color: var(--accent);
+        }
+        
+        .footer-text {
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-link {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+        
+        .footer-link:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        /* Container settings */
+.section.social-media {
+    background-color:black;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+/* Section title */
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+.section-title span {
+    color: deepskyblue;
+}
+
+/* Social grid layout */
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    justify-items: center;
+}
+
+/* Individual social card */
+.social-card {
+    background-color:white;
+    padding: 20px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 300px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.social-card:hover {
+    transform: translateY(-10px);
+    background-color: rgba(30, 144, 255, 0.1);
+}
+
+/* Icon styling */
+.social-icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+/* Name (e.g., Instagram, GitHub) */
+.social-name {
+    font-size: 1.2rem;
+    color: peachpuff;
+    margin-bottom: 10px;
+}
+
+/* Link styling */
+.social-link {
+    color: #87cefa;
+    text-decoration: none;
+    font-size: 1rem;
+    word-break: break-all;
+}
+
+.social-link:hover {
+    text-decoration: underline;
+}
+@media (max-width: 500px) {
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .social-name {
+        font-size: 1rem;
+    }
+
+    .social-link {
+        font-size: 0.95rem;
+    }
+}
+.social-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.social-card {
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 16px;
+  width: 200px;
+  text-align: center;
+  color: white;
+  transition: transform 0.3s;
+}
+
+.social-card:hover {
+  transform: translateY(-10px);
+}
+
+.social-icon i {
+  font-size: 32px;
+  color: #00BFFF;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.social-name {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: peachpuff;
+}
+
+.social-link-wrap {
+  margin-top: 5px;
+}
+
+.social-link {
+  display: inline-block;
+  color: #00BFFF;
+  font-size: 14px;
+  text-decoration: none;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+  .social-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .social-card {
+    width: 90%;
+  }
+}
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background-color: rgb(188, 187, 196);
+                width: 100%;
+                text-align: center;
+                transition: var(--transition);
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+                padding: 2rem 0;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                margin: 1.5rem 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-image {
+                width: 400px;
+                height: 400px;
+                right: -100px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-image {
+                display: none;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .footer-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Port<span>folio</span></a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                     <li class="nav-item"><a href="#connect" class="nav-link">Connect</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Hi, I'm <span id="name">Kirubakaran</span></h1>
+            <p>I'm a passionate software developer creating stunning digital experiences.</p>
+            <a href="#portfolio" class="btn hero-btn">View My Work</a>
+        </div>
+        <div class="hero-image"></div>
+        <div class="hero-shape shape-1"></div>
+        <div class="hero-shape shape-2"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About <span>Me</span></h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="c:\Users\HP\Downloads\dp pic.jpg" alt="About Me">
+                </div>
+                <div class="about-text">
+                    <h3>Who am I?</h3>
+                    <p>I'm a passionate web developer with over 5 years of experience creating beautiful and functional websites and applications. I specialize in front-end development with a strong focus on user experience and responsive design.</p>
+                    <p>My approach combines technical expertise with creative problem-solving to deliver solutions that not only look great but also perform exceptionally well.</p>
+                    <a href="#contact" class="btn">Hire Me</a>
+                    <div class="skills">
+                        <span class="skill">HTML</span>
+                        <span class="skill">CSS</span>
+                        <span class="skill">JavaScript</span>
+                        <span class="skill">React</span>
+                        <span class="skill">python</span>
+                        <span class="skill">C</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services">
+        <div class="container">
+            <h2 class="section-title">My <span>Services</span></h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i>💻</i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Web Development</h3>
+                        <p>Custom website development with clean code and modern technologies for optimal performance and user experience.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i>🎨</i>
+                    </div>
+                    <div class="service-content">
+                        <h3>UI/UX Design</h3>
+                        <p>Intuitive and engaging user interfaces with a focus on user experience, accessibility, and conversion optimization.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i>📱</i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Responsive Design</h3>
+                        <p>Mobile-first approach ensuring your website looks and functions perfectly on all devices and screen sizes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section">
+        <div class="container">
+            <h2 class="section-title">My <span>Portfolio</span></h2>
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="app">App Development</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="web">
+                    <img src="C:\Users\HP\Downloads\showing-cart-trolley-shopping-online-sign-graphic.jpg" alt="Portfolio Item" class="portfolio-img">
+                    <div class="portfolio-hover">
+                        <h3>E-commerce Website</h3>
+                        <p>Web Design, Development</p>
+                        <a href="https://github.com/kirubakaran2110/ecommerce.git" class="portfolio-btn">View Details</a>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="app">
+                    <img src="c:\Users\HP\Downloads\to do pic.jpg" alt="Portfolio Item" class="portfolio-img">
+                    <div class="portfolio-hover">
+                        <h3>webpage</h3>
+                        <a href="https://kiruba-sdp.netlify.app/" class="portfolio-btn">View Details</a>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="branding">
+                    <img src="c:\Users\HP\Downloads\four gamespic.webp" alt="Portfolio Item" class="portfolio-img">
+                    <div class="portfolio-hover">
+                        <h3>Four games</h3>
+                        <a href="https://github.com/kirubakaran2110/four-games.git" class="portfolio-btn">View Details</a>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="web">
+                    <img src="C:\Users\HP\Downloads\port img.webp" alt="Portfolio Item" class="portfolio-img">
+                    <div class="portfolio-hover">
+                        <h3>Portfolio Website</h3>
+                        <p>Web Design, Development</p>
+                        <a href="" class="portfolio-btn">View Details</a>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="app">
+                    <img src="c:\Users\HP\Downloads\calc img.jpg" alt="Portfolio Item" class="portfolio-img">
+                    <div class="portfolio-hover">
+                        <h3>Design calculator</h3>
+                        
+                        <a href="https://github.com/kirubakaran2110/calculator-.git" class="portfolio-btn">View Details</a>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="branding">
+                    <img src="c:\Users\HP\Downloads\weather img.webp" alt="Portfolio Item" class="portfolio-img">
+                    <div class="portfolio-hover">
+                        <h3>Weather prediction</h3>
+                        
+                        <a href="https://thunderous-pixie-cee610.netlify.app/" class="portfolio-btn">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<section id="social" class="section social-media">
+  <div class="container">
+    <h2 class="section-title">Connect <span>With Me</span></h2>
+    <div class="social-grid">
+
+      <!-- Instagram -->
+      <div class="social-card">
+        <div class="social-icon">
+          <i class="fab fa-instagram"></i>
+        </div>
+        <h3 class="social-name">Instagram</h3>
+        <div class="social-link-wrap">
+          <a href="https://www.instagram.com/invites/contact/?i=f2mci9uo72pd&utm_content=lx4pfou" class="social-link" target="_blank">@king_kiruba2110</a>
+        </div>
+      </div>
+
+      <!-- WhatsApp -->
+      <div class="social-card">
+        <div class="social-icon">
+          <i class="fab fa-whatsapp"></i>
+        </div>
+        <h3 class="social-name">WhatsApp</h3>
+        <div class="social-link-wrap">
+          <a href="https://wa.me/9360853175" class="social-link" target="_blank">9360853175</a>
+        </div>
+      </div>
+
+      <!-- GitHub -->
+      <div class="social-card">
+        <div class="social-icon">
+          <i class="fab fa-github"></i>
+        </div>
+        <h3 class="social-name">GitHub</h3>
+        <div class="social-link-wrap">
+          <a href="https://github.com/kirubakaran2110" class="social-link" target="_blank">kirubakaran2110</a>
+        </div>
+      </div>
+
+      <!-- LinkedIn -->
+      <div class="social-card">
+        <div class="social-icon">
+          <i class="fab fa-linkedin"></i>
+        </div>
+        <h3 class="social-name">LinkedIn</h3>
+        <div class="social-link-wrap">
+          <a href="https://www.linkedin.com/in/kirubakaran-p-25b049324" class="social-link" target="_blank">kirubakaran-p-25b049324</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
